@@ -2,7 +2,7 @@
 
 name = "ShopiHI"
 client_id = "1783a21f9b5b8e9a68d4ea140422d760"
-application_url = "https://granted-laid-nevada-building.trycloudflare.com"
+application_url = "https://albert-runner-engineer-institutes.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://granted-laid-nevada-building.trycloudflare.com/auth/callback",
-  "https://granted-laid-nevada-building.trycloudflare.com/auth/shopify/callback",
-  "https://granted-laid-nevada-building.trycloudflare.com/api/auth/callback"
+  "https://albert-runner-engineer-institutes.trycloudflare.com/auth/callback",
+  "https://albert-runner-engineer-institutes.trycloudflare.com/auth/shopify/callback",
+  "https://albert-runner-engineer-institutes.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

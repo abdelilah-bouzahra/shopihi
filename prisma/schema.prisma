@@ -21,10 +21,11 @@ model Session {
   userId      BigInt?
 }
 
-model HeitzApi {
-  id               Int      @id @default(autoincrement())
-  api      String
-  idHeitz  String
-  key      String
-  autoSync Boolean
+model APICredentials {
+  id        Int      @id @default(autoincrement())
+  shop      String   @unique
+  apiUrl    String
+  apiId     String
+  apiKey    String
+  createdAt DateTime @default(now())
 }
