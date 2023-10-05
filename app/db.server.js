@@ -121,8 +121,6 @@ export const sync = async (shop, accessToken, apiUrl, apiId, apiKey) => {
       throw new Error("No articles fetched or failed to fetch articles");
     }
 
-    console.log(articles);
-
     for (let article of articles) {
       getPrice(apiUrl, token, article.id).then(async (price) => {
         try {
@@ -140,35 +138,20 @@ export const sync = async (shop, accessToken, apiUrl, apiId, apiKey) => {
           const response = await createShopifyProduct(shop, accessToken, productData);
           return json(response);
         } catch (error) {
-          console.error('Error adding product:', error);
+          console.error('Error adding product');
+          let productData = {
+            title: article.name,
+            body_html: '',
+            images: article.image ? [{ src: `${apiUrl}/article.image` }] : [],
+            variants: [
+              {
+                price: price.toString(),
+              },
+            ],
+          };
+          console.log(productData);
           return json({ message: 'Failed to add product' }, { status: 500 });
         }
-
-        // const response = await fetch('/createProduct', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({
-        //     shop: shop,
-        //     accessToken: accessToken,
-        //     productData: {
-        //       title: article.name,
-        //       body_html: '',
-        //       images: article.image ? [{ src: `${apiUrl}/article.image` }] : [],
-        //       variants: [
-        //         {
-        //           price: price.toString(),
-        //         },
-        //       ],
-        //     },
-        //   }),
-        // });
-
-        // const shopifyResponse = await response.json();
-        // if (shopifyResponse.errors) {
-        //   throw new Error(shopifyResponse.errors);
-        // }
       });
     }
   } catch (error) {
